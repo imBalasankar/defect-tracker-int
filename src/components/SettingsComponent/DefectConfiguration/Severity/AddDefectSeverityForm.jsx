@@ -65,7 +65,7 @@ export default function AddDefectSeverityForm({ onFinish }) {
       .then(response => {
         console.log(response);
         setShowResult("alert alert-success");
-        setMessage("Successfully Saved!!");
+        setMessage(response.data.message);
         clearValues();
       })
       .catch(error => {

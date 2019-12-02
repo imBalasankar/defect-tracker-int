@@ -68,11 +68,11 @@ export default function DefectSeverityCustomToolbarSelect({
       <Dialog
         open={openAdd}
         onClose={handleAddClose}
-        aria-labelledby="add-project-title"
+        aria-labelledby="edit-severity-title"
         fullWidth={true}
         maxWidth={"sm"}
       >
-        <DialogTitle id="add-project-title">Edit Severity</DialogTitle>
+        <DialogTitle id="edit-severity-title">Edit Severity</DialogTitle>
         <Divider />
         <DialogContent>
           <EditDefectSeverityForm onFinish={handleAddClose} id={id} />
@@ -94,11 +94,11 @@ export default function DefectSeverityCustomToolbarSelect({
       <Dialog
         open={openDelete}
         onClose={handleDeleteClose}
-        aria-labelledby="delete-project-title"
+        aria-labelledby="delete-severity-title"
         fullWidth={true}
         maxWidth={"xs"}
       >
-        <DialogTitle id="delete-project-title">Delete Priority</DialogTitle>
+        <DialogTitle id="delete-severity-title">Delete Severity</DialogTitle>
         <Divider />
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

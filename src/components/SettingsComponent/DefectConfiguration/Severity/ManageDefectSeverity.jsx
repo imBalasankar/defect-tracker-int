@@ -30,7 +30,8 @@ const columns = [
     name: "id",
     label: "Id",
     options: {
-      filter: true
+      filter: true,
+      display: false
     }
   },
   {
@@ -85,6 +86,8 @@ export default function ManageDefectSeverity() {
       })
       .catch(error => {
         console.log(error);
+        setShowResult("alert alert-danger");
+        setMessage("Failed to Retrive Data");
       });
   }, [trackDelete, trackAdd, trackEdit]);
 
@@ -130,6 +133,7 @@ export default function ManageDefectSeverity() {
       .catch(error => {
         console.log(error);
         setShowResult("alert alert-danger");
+        setMessage("Failed to Delete");
       });
   };
 

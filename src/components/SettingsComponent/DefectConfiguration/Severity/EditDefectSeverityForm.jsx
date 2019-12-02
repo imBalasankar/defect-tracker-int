@@ -75,26 +75,18 @@ export default function EditDefectSeverityForm({ id, onFinish }) {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  const clearValues = () => {
-    setValues({
-      name: "",
-      description: ""
-    });
-  };
-
   const handleSubmit = event => {
     event.preventDefault();
     Axios.put(`http://localhost:8087/api/v1/severity`, values)
       .then(response => {
         console.log(response);
         setShowResult("alert alert-success");
-        setMessage("Successfully Saved!!");
-        clearValues();
+        setMessage(response.data.message);
       })
       .catch(error => {
         console.log(error);
         setShowResult("alert alert-danger");
-        setMessage("Failed to Save!!");
+        setMessage("Failed to Update!!");
       });
   };
 

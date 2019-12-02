@@ -52,11 +52,11 @@ export default function DefectSeverityCustomToolbar({ onCreate }) {
       <Dialog
         open={openAdd}
         onClose={handleAddClose}
-        aria-labelledby="add-project-title"
+        aria-labelledby="add-severity-title"
         fullWidth={true}
         maxWidth={"sm"}
       >
-        <DialogTitle id="add-project-title">Add Severity</DialogTitle>
+        <DialogTitle id="add-severity-title">Add Severity</DialogTitle>
         <Divider />
         <DialogContent>
           <AddDefectSeverityForm onFinish={handleAddClose} />
