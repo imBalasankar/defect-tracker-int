@@ -32,15 +32,15 @@ export default function DefectSeverityCustomToolbarSelect({
   onDelete
 }) {
   const classes = useStyles();
-  const [openAdd, setOpenAdd] = React.useState(false);
+  const [openEdit, setOpenEdit] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
 
-  const handleAddOpen = () => {
-    setOpenAdd(true);
+  const handleEditOpen = () => {
+    setOpenEdit(true);
   };
 
-  const handleAddClose = () => {
-    setOpenAdd(false);
+  const handleEditClose = () => {
+    setOpenEdit(false);
     onEdit();
   };
 
@@ -60,14 +60,14 @@ export default function DefectSeverityCustomToolbarSelect({
           aria-label="edit"
           className={classes.fab}
           size="small"
-          onClick={handleAddOpen}
+          onClick={handleEditOpen}
         >
           <EditIcon />
         </Fab>
       </Tooltip>
       <Dialog
-        open={openAdd}
-        onClose={handleAddClose}
+        open={openEdit}
+        onClose={handleEditClose}
         aria-labelledby="edit-severity-title"
         fullWidth={true}
         maxWidth={"sm"}
@@ -75,7 +75,7 @@ export default function DefectSeverityCustomToolbarSelect({
         <DialogTitle id="edit-severity-title">Edit Severity</DialogTitle>
         <Divider />
         <DialogContent>
-          <EditDefectSeverityForm onFinish={handleAddClose} id={id} />
+          <EditDefectSeverityForm onFinish={handleEditClose} id={id} />
         </DialogContent>
       </Dialog>
 

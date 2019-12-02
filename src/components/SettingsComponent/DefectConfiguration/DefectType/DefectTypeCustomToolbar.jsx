@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function DefectTypeCustomToolbar() {
+export default function DefectTypeCustomToolbar({ onCreate }) {
   const classes = useStyles();
   const [openAdd, setOpenAdd] = React.useState(false);
 
@@ -30,6 +30,7 @@ export default function DefectTypeCustomToolbar() {
 
   const handleAddClose = () => {
     setOpenAdd(false);
+    onCreate();
   };
 
   return (
@@ -48,14 +49,14 @@ export default function DefectTypeCustomToolbar() {
       <Dialog
         open={openAdd}
         onClose={handleAddClose}
-        aria-labelledby="add-project-title"
+        aria-labelledby="add-type-title"
         fullWidth={true}
         maxWidth={"sm"}
       >
-        <DialogTitle id="add-project-title">Add Defect Type</DialogTitle>
+        <DialogTitle id="add-type-title">Add Type</DialogTitle>
         <Divider />
         <DialogContent>
-          <AddDefectTypeForm />
+          <AddDefectTypeForm onFinish={handleAddClose} />
         </DialogContent>
       </Dialog>
     </React.Fragment>

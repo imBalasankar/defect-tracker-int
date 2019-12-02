@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import Axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,20 +34,57 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function AddDefectPriorityForm() {
+const divStyle = {
+  marginRight: "22px",
+  marginTop: "10px"
+};
+
+export default function AddDefectPriorityForm({ onFinish }) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     name: "",
     description: ""
   });
+  const [showResult, setShowResult] = React.useState("");
+  const [message, setMessage] = React.useState("");
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
 
+  const clearValues = () => {
+    setValues({
+      name: "",
+      description: ""
+    });
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    Axios.post(`http://localhost:8087/api/v1/priority`, values)
+      .then(response => {
+        console.log(response);
+        setShowResult("alert alert-success");
+        setMessage(response.data.message);
+        clearValues();
+      })
+      .catch(error => {
+        console.log(error);
+        setShowResult("alert alert-danger");
+        setMessage("Failed to Save!!");
+      });
+  };
+
   return (
     <div>
-      <form className={classes.container} autoComplete="off">
+      <div style={divStyle} className={showResult} role="alert">
+        {message}
+      </div>
+      <form
+        className={classes.container}
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
         <Grid container justify="space-between">
           <TextField
             required
@@ -70,7 +108,12 @@ export default function AddDefectPriorityForm() {
           />
         </Grid>
         <Grid container justify="flex-end">
-          <Button color="primary" size="large" className={classes.button}>
+          <Button
+            color="primary"
+            size="large"
+            className={classes.button}
+            onClick={onFinish}
+          >
             Close
           </Button>
           <Button

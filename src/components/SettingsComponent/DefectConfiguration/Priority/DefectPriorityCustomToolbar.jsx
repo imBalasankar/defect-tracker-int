@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function DefectPriorityCustomToolbar() {
+export default function DefectPriorityCustomToolbar({ onCreate }) {
   const classes = useStyles();
   const [openAdd, setOpenAdd] = React.useState(false);
 
@@ -30,6 +30,7 @@ export default function DefectPriorityCustomToolbar() {
 
   const handleAddClose = () => {
     setOpenAdd(false);
+    onCreate();
   };
 
   return (
@@ -48,14 +49,14 @@ export default function DefectPriorityCustomToolbar() {
       <Dialog
         open={openAdd}
         onClose={handleAddClose}
-        aria-labelledby="add-project-title"
+        aria-labelledby="add-priority-title"
         fullWidth={true}
         maxWidth={"sm"}
       >
-        <DialogTitle id="add-project-title">Add Priority</DialogTitle>
+        <DialogTitle id="add-priority-title">Add Priority</DialogTitle>
         <Divider />
         <DialogContent>
-          <AddDefectPriorityForm />
+          <AddDefectPriorityForm onFinish={handleAddClose} />
         </DialogContent>
       </Dialog>
     </React.Fragment>

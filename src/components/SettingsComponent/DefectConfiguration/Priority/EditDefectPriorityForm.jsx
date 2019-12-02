@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import Axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,21 +34,72 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function EditDefectPriorityForm() {
+const divStyle = {
+  marginRight: "22px",
+  marginTop: "10px"
+};
+
+export default function EditDefectPriorityForm({ id, onFinish }) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     id: "",
     name: "",
     description: ""
   });
+  const [showResult, setShowResult] = React.useState("");
+  const [message, setMessage] = React.useState("");
+
+  useEffect(() => {
+    Axios.get(`http://localhost:8087/api/v1/priority/${id()}`)
+      .then(response => {
+        console.log(response);
+        let result = response.data.results.listPriority;
+        updateData(result);
+      })
+      .catch(error => {
+        console.log(error);
+        setShowResult("alert alert-danger");
+        setMessage("Failed to Retrive Data!!");
+      });
+  }, [id]);
+
+  const updateData = data => {
+    setValues({
+      id: data.id,
+      name: data.name,
+      description: data.description
+    });
+  };
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    Axios.put(`http://localhost:8087/api/v1/priority`, values)
+      .then(response => {
+        console.log(response);
+        setShowResult("alert alert-success");
+        setMessage(response.data.message);
+      })
+      .catch(error => {
+        console.log(error);
+        setShowResult("alert alert-danger");
+        setMessage("Failed to Update!!");
+      });
+  };
+
   return (
     <div>
-      <form className={classes.container} autoComplete="off">
+      <div style={divStyle} className={showResult} role="alert">
+        {message}
+      </div>
+      <form
+        className={classes.container}
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
         <Grid container justify="space-between">
           <TextField
             required
@@ -71,7 +123,12 @@ export default function EditDefectPriorityForm() {
           />
         </Grid>
         <Grid container justify="flex-end">
-          <Button color="primary" size="large" className={classes.button}>
+          <Button
+            color="primary"
+            size="large"
+            className={classes.button}
+            onClick={onFinish}
+          >
             Close
           </Button>
           <Button
