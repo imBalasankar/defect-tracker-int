@@ -50,10 +50,6 @@ export default function ListAllItems() {
     false
   );
   const [openSettings, setOpenSettings] = React.useState(false);
-  const [
-    openProjectConfiguration,
-    setOpenProjectConfiguration
-  ] = React.useState(false);
   const [openDefectConfiguration, setOpenDefectConfiguration] = React.useState(
     false
   );
@@ -86,10 +82,6 @@ export default function ListAllItems() {
 
   const handleSettingsClick = () => {
     setOpenSettings(!openSettings);
-  };
-
-  const handleProjectConfigurationClick = () => {
-    setOpenProjectConfiguration(!openProjectConfiguration);
   };
 
   const handleDefectConfigurationClick = () => {
@@ -129,6 +121,7 @@ export default function ListAllItems() {
               </ListItemIcon>
               <ListItemText primary="Company" />
             </ListItem>
+
             <ListItem
               button
               className={classes.nested}
@@ -142,6 +135,7 @@ export default function ListAllItems() {
               </ListItemIcon>
               <ListItemText primary="Developer" />
             </ListItem>
+
             <ListItem
               button
               className={classes.nested}
@@ -155,6 +149,7 @@ export default function ListAllItems() {
               </ListItemIcon>
               <ListItemText primary="Project Manager" />
             </ListItem>
+
             <ListItem
               button
               className={classes.nested}
@@ -168,6 +163,7 @@ export default function ListAllItems() {
               </ListItemIcon>
               <ListItemText primary="QA" />
             </ListItem>
+
             <ListItem
               button
               className={classes.nested}
@@ -206,6 +202,7 @@ export default function ListAllItems() {
               </ListItemIcon>
               <ListItemText primary="Manage License" />
             </ListItem>
+
             <ListItem
               button
               className={classes.nested}
@@ -244,6 +241,7 @@ export default function ListAllItems() {
               </ListItemIcon>
               <ListItemText primary="Manage Employee" />
             </ListItem>
+
             <ListItem
               button
               className={classes.nested}
@@ -295,6 +293,7 @@ export default function ListAllItems() {
               </ListItemIcon>
               <ListItemText primary="Manage Module" />
             </ListItem>
+
             <ListItem
               button
               className={classes.nested}
@@ -333,6 +332,7 @@ export default function ListAllItems() {
               </ListItemIcon>
               <ListItemText primary="Project Allocation" />
             </ListItem>
+
             <ListItem
               button
               className={classes.nested}
@@ -346,6 +346,7 @@ export default function ListAllItems() {
               </ListItemIcon>
               <ListItemText primary="Role Allocation" />
             </ListItem>
+
             <ListItem
               button
               className={classes.nested}
@@ -403,7 +404,7 @@ export default function ListAllItems() {
               onClick={() => updateSelected(18)}
               selected={select === 18}
               component={Link}
-              to={"/settings/license-configuration"}
+              to={"/settings/license-configuration/manage-feature"}
             >
               <ListItemIcon>
                 <Avatar className={classes.customAvatar}>LC</Avatar>
@@ -417,7 +418,7 @@ export default function ListAllItems() {
               onClick={() => updateSelected(19)}
               selected={select === 19}
               component={Link}
-              to={"/settings/employee-configuration"}
+              to={"/settings/employee-configuration/manage-designation"}
             >
               <ListItemIcon>
                 <Avatar className={classes.customAvatar}>EC</Avatar>
@@ -428,52 +429,17 @@ export default function ListAllItems() {
             <ListItem
               button
               className={classes.nested}
-              onClick={handleProjectConfigurationClick}
+              onClick={() => updateSelected(20)}
+              selected={select === 20}
+              component={Link}
+              to={"/settings/project-configuration/manage-role"}
             >
               <ListItemIcon>
                 <Avatar className={classes.customAvatar}>PC</Avatar>
               </ListItemIcon>
               <ListItemText primary="Project Configuration" />
-              {openProjectConfiguration ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-            <Collapse
-              in={openProjectConfiguration}
-              timeout="auto"
-              unmountOnExit
-            >
-              <List component="div" disablePadding>
-                <ListItem
-                  button
-                  className={classes.dualNested}
-                  onClick={() => updateSelected(21)}
-                  selected={select === 21}
-                  component={Link}
-                  to={"/settings/project-configuration/role"}
-                >
-                  <ListItemText primary="Role" />
-                </ListItem>
-                <ListItem
-                  button
-                  className={classes.dualNested}
-                  onClick={() => updateSelected(22)}
-                  selected={select === 22}
-                  component={Link}
-                  to={"/settings/project-configuration/type"}
-                >
-                  <ListItemText primary="Type" />
-                </ListItem>
-                <ListItem
-                  button
-                  className={classes.dualNested}
-                  onClick={() => updateSelected(23)}
-                  selected={select === 23}
-                  component={Link}
-                  to={"/settings/project-configuration/status"}
-                >
-                  <ListItemText primary="Status" />
-                </ListItem>
-              </List>
-            </Collapse>
+
             <ListItem
               button
               className={classes.nested}
@@ -497,6 +463,7 @@ export default function ListAllItems() {
                 >
                   <ListItemText primary="Priority" />
                 </ListItem>
+
                 <ListItem
                   button
                   className={classes.dualNested}
@@ -507,6 +474,7 @@ export default function ListAllItems() {
                 >
                   <ListItemText primary="Severity" />
                 </ListItem>
+
                 <ListItem
                   button
                   className={classes.dualNested}
@@ -517,6 +485,7 @@ export default function ListAllItems() {
                 >
                   <ListItemText primary="Type" />
                 </ListItem>
+
                 <ListItem
                   button
                   className={classes.dualNested}
@@ -552,6 +521,7 @@ export default function ListAllItems() {
                 >
                   <ListItemText primary="Company" />
                 </ListItem>
+
                 <ListItem
                   button
                   className={classes.dualNested}
@@ -562,6 +532,7 @@ export default function ListAllItems() {
                 >
                   <ListItemText primary="Project" />
                 </ListItem>
+
                 <ListItem
                   button
                   className={classes.dualNested}
@@ -572,6 +543,7 @@ export default function ListAllItems() {
                 >
                   <ListItemText primary="QA Lead" />
                 </ListItem>
+
                 <ListItem
                   button
                   className={classes.dualNested}
@@ -597,6 +569,7 @@ export default function ListAllItems() {
               </ListItemIcon>
               <ListItemText primary="Defect Log" />
             </ListItem>
+
             <ListItem
               button
               className={classes.nested}
@@ -620,6 +593,7 @@ export default function ListAllItems() {
                 >
                   <ListItemText primary="Defect Role" />
                 </ListItem>
+
                 <ListItem
                   button
                   className={classes.dualNested}

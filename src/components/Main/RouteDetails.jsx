@@ -8,24 +8,34 @@ import CompanyDashboard from "../DashboardComponent/Company/CompanyDashboard";
 import DeveloperDashboard from "../DashboardComponent/Developer/DeveloperDashboard";
 import ProjectManagerDashboard from "../DashboardComponent/ProjectManager/ProjectManagerDashboard";
 import QADashboard from "../DashboardComponent/QA/QADashboard";
+import ProductDashboard from "../DashboardComponent/Product/ProductDashboard";
+import ManageLicense from "../ProductComponent/ManageLicense/ManageLicense";
+import AddLicense from "../ProductComponent/ManageLicense/AddLicenseForm";
+import EditLicense from "../ProductComponent/ManageLicense/EditLicenseForm";
 import ManageCompany from "../ProductComponent/ManageCompany/ManageCompany";
 import AddCompany from "../ProductComponent/ManageCompany/AddCompanyForm";
 import EditCompany from "../ProductComponent/ManageCompany/EditCompanyForm";
 import ManageEmployee from "../CompanyComponent/ManageEmployees/ManageEmployee";
 import AddEmployee from "../CompanyComponent/ManageEmployees/AddEmployeeForm";
 import EditEmployee from "../CompanyComponent/ManageEmployees/EditEmployeeForm";
+import ManageClient from "../CompanyComponent/ManageClients/ManageClient";
 import AddClient from "../CompanyComponent/ManageClients/AddClientForm";
 import EditClient from "../CompanyComponent/ManageClients/EditClientForm";
-import ManageEmployeeDesignation from "../SettingsComponent/EmployeeConfiguration/ManageEmployeeDesignation";
-import ProjectAllocation from "../AllocationComponent/ProjectAllocation/ManageProjectAllocation";
-import ManageModule from "../ModuleComponent/ManageModule";
-import ManageSubmodule from "../ModuleComponent/SubModule/ManageSubModule";
-import RoleAllocation from "../AllocationComponent/RoleAllocation/ManageRoleAllocation";
-import ModuleAllocation from "../AllocationComponent/ModuleAllocation/ManageModuleAllocation";
 import ManageProject from "../ProjectComponent/ManageProjects";
 import AddProject from "../ProjectComponent/AddProjectForm";
 import EditProject from "../ProjectComponent/EditProjectForm";
+import ManageModule from "../ModuleComponent/ManageModule";
+import ManageSubmodule from "../ModuleComponent/SubModule/ManageSubModule";
+import ProjectAllocation from "../AllocationComponent/ProjectAllocation/ManageProjectAllocation";
+import RoleAllocation from "../AllocationComponent/RoleAllocation/ManageRoleAllocation";
+import ModuleAllocation from "../AllocationComponent/ModuleAllocation/ManageModuleAllocation";
 import ManageDefect from "../DefectComponent/ManageDefects";
+import AddDefectForm from "../DefectComponent/AddDefectForm";
+import EditDefectForm from "../DefectComponent/EditDefectForm";
+import UserProfile from "../SettingsComponent/UserProfile/UserProfile";
+import ManageLicenseFeature from "../SettingsComponent/LicenseConfiguration//Feature/ManageFeature";
+import ManageEmployeeDesignation from "../SettingsComponent/EmployeeConfiguration/Designation/ManageEmployeeDesignation";
+import ManageProjectRole from "../SettingsComponent/ProjectConfiguration/Role/ManageProjectRole";
 import DefectPriority from "../SettingsComponent/DefectConfiguration/Priority/ManageDefectPriority";
 import DefectSeverity from "../SettingsComponent/DefectConfiguration/Severity/ManageDefectSeverity";
 import DefectType from "../SettingsComponent/DefectConfiguration/DefectType/ManageDefectType";
@@ -35,22 +45,8 @@ import ProjectPrivileges from "../SettingsComponent/Privileges/ProjectPrivileges
 import QALeadPrivileges from "../SettingsComponent/Privileges/QALeadPrivileges/QALeadPrivileges";
 import TechLeadPriviles from "../SettingsComponent/Privileges/TechLeadPrivileges/TechLeadPrivileges";
 import DefectLog from "../SettingsComponent/DefectLog/ManageLog";
-import AddDefectForm from "../DefectComponent/AddDefectForm";
-import EditDefectForm from "../DefectComponent/EditDefectForm";
-import ProductDashboard from "../DashboardComponent/Product/ProductDashboard";
-import ManageLicense from "../ProductComponent/ManageLicense/ManageLicense";
-import AddLicense from "../ProductComponent/ManageLicense/AddLicenseForm";
-import EditLicense from "../ProductComponent/ManageLicense/EditLicenseForm";
-import ManageFeature from "../SettingsComponent/LicenseConfiguration/ManageFeature";
-import AddFeature from "../SettingsComponent/LicenseConfiguration/AddFeatureForm";
-import EditFeature from "../SettingsComponent/LicenseConfiguration/EditFeatureForm";
 import DefectRoleFlow from "../SettingsComponent/WorkFlow/DefectRoleFlow/DefectRoleFlow";
 import DefectStatusFlow from "../SettingsComponent/WorkFlow/DefectStatusFlow/DefectStatusFlow";
-import ManageClient from "../CompanyComponent/ManageClients/ManageClient";
-import UserProfile from "../SettingsComponent/UserProfile/UserProfile";
-import ManageProjectRole from "../SettingsComponent/ProjectConfiguration/Role/ManageProjectRole";
-import ManageProjectStatus from "../SettingsComponent/ProjectConfiguration/ProjectStatus/ManageProjectStatus";
-import ManageProjectType from "../SettingsComponent/ProjectConfiguration/ProjectType/ManageProjectType";
 
 export default function RouteDetails({ isDark }) {
   return (
@@ -422,19 +418,7 @@ export default function RouteDetails({ isDark }) {
           <UserProfile />
         </Route>
 
-        <Route exact path="/settings/license-configuration">
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="small" />}
-            aria-label="breadcrumb"
-          >
-            <Links color="inherit">Home</Links>
-            <Links color="inherit">Settings</Links>
-            <Typography color="textPrimary">License Configuration</Typography>
-          </Breadcrumbs>
-          <ManageFeature />
-        </Route>
-
-        <Route path="/settings/license-configuration/add-feature">
+        <Route exact path="/settings/license-configuration/manage-feature">
           <Breadcrumbs
             separator={<NavigateNextIcon fontSize="small" />}
             aria-label="breadcrumb"
@@ -442,37 +426,25 @@ export default function RouteDetails({ isDark }) {
             <Links color="inherit">Home</Links>
             <Links color="inherit">Settings</Links>
             <Links color="inherit">License Configuration</Links>
-            <Typography color="textPrimary">Add Feature</Typography>
+            <Typography color="textPrimary">Manage Feature</Typography>
           </Breadcrumbs>
-          <AddFeature />
+          <ManageLicenseFeature />
         </Route>
 
-        <Route path="/settings/license-configuration/edit-feature">
+        <Route path="/settings/employee-configuration/manage-designation">
           <Breadcrumbs
             separator={<NavigateNextIcon fontSize="small" />}
             aria-label="breadcrumb"
           >
             <Links color="inherit">Home</Links>
             <Links color="inherit">Settings</Links>
-            <Links color="inherit">License Configuration</Links>
-            <Typography color="textPrimary">Edit Feature</Typography>
-          </Breadcrumbs>
-          <EditFeature />
-        </Route>
-
-        <Route path="/settings/employee-configuration">
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="small" />}
-            aria-label="breadcrumb"
-          >
-            <Links color="inherit">Home</Links>
-            <Links color="inherit">Settings</Links>
-            <Typography color="textPrimary">Employee Configuration</Typography>
+            <Links color="inherit">Employee Configuration</Links>
+            <Typography color="textPrimary">Manage Designation</Typography>
           </Breadcrumbs>
           <ManageEmployeeDesignation />
         </Route>
 
-        <Route path="/settings/project-configuration/role">
+        <Route path="/settings/project-configuration/manage-role">
           <Breadcrumbs
             separator={<NavigateNextIcon fontSize="small" />}
             aria-label="breadcrumb"
@@ -480,35 +452,9 @@ export default function RouteDetails({ isDark }) {
             <Links color="inherit">Home</Links>
             <Links color="inherit">Settings</Links>
             <Links color="inherit">Project-Configuration</Links>
-            <Typography color="textPrimary">Role</Typography>
+            <Typography color="textPrimary">Manage-Role</Typography>
           </Breadcrumbs>
           <ManageProjectRole />
-        </Route>
-
-        <Route path="/settings/project-configuration/type">
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="small" />}
-            aria-label="breadcrumb"
-          >
-            <Links color="inherit">Home</Links>
-            <Links color="inherit">Settings</Links>
-            <Links color="inherit">Project-Configuration</Links>
-            <Typography color="textPrimary">Type</Typography>
-          </Breadcrumbs>
-          <ManageProjectType />
-        </Route>
-
-        <Route path="/settings/project-configuration/status">
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="small" />}
-            aria-label="breadcrumb"
-          >
-            <Links color="inherit">Home</Links>
-            <Links color="inherit">Settings</Links>
-            <Links color="inherit">Project-Configuration</Links>
-            <Typography color="textPrimary">Status</Typography>
-          </Breadcrumbs>
-          <ManageProjectStatus />
         </Route>
 
         <Route path="/settings/defect-configuration/priority">

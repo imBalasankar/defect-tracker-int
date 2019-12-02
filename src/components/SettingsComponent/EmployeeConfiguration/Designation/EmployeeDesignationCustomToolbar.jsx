@@ -7,7 +7,7 @@ import Dialog from "@material-ui/core/Dialog";
 import Divider from "@material-ui/core/Divider";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import AddProjectStatusForm from "./AddProjectStatusForm";
+import AddEmployeeDesignation from "./AddEmployeeDesignationForm";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function ProjectStatusCustomToolbar() {
+export default function EmployeeDesignationCustomToolbar() {
   const classes = useStyles();
   const [openAdd, setOpenAdd] = React.useState(false);
 
@@ -52,10 +52,10 @@ export default function ProjectStatusCustomToolbar() {
         fullWidth={true}
         maxWidth={"sm"}
       >
-        <DialogTitle id="add-project-title">Add Project Status</DialogTitle>
+        <DialogTitle id="add-project-title">Add Designation</DialogTitle>
         <Divider />
         <DialogContent>
-          <AddProjectStatusForm />
+          <AddEmployeeDesignation />
         </DialogContent>
       </Dialog>
     </React.Fragment>

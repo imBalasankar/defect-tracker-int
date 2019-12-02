@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import EditIcon from "@material-ui/icons/Edit";
 import Fab from "@material-ui/core/Fab";
@@ -12,7 +12,6 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import EditDefectSeverityForm from "./EditDefectSeverityForm";
-import Axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,18 +34,6 @@ export default function DefectSeverityCustomToolbarSelect({
   const classes = useStyles();
   const [openAdd, setOpenAdd] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
-  const [severity, setSeverity] = React.useState([]);
-
-  useEffect(() => {
-    Axios.get(`http://localhost:8087/api/v1/severity/${id()}`)
-      .then(response => {
-        console.log(response);
-        setSeverity(response.data.results.listSeverity);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, [id]);
 
   const handleAddOpen = () => {
     setOpenAdd(true);
@@ -88,11 +75,7 @@ export default function DefectSeverityCustomToolbarSelect({
         <DialogTitle id="add-project-title">Edit Severity</DialogTitle>
         <Divider />
         <DialogContent>
-          <EditDefectSeverityForm
-            onFinish={handleAddClose}
-            severity={severity}
-            id={id}
-          />
+          <EditDefectSeverityForm onFinish={handleAddClose} id={id} />
         </DialogContent>
       </Dialog>
 

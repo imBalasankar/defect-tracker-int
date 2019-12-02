@@ -36,8 +36,8 @@ const columns = [
     }
   },
   {
-    name: "Type",
-    label: "Type",
+    name: "ClientName",
+    label: "Client Name",
     options: {
       filter: true,
       sort: false
@@ -81,7 +81,7 @@ const data = [
   {
     ProjectId: "P-100",
     ProjectName: "CMS",
-    Type: "Product",
+    ClientName: "Mitra",
     StartDate: "03-01-2019",
     EndDate: "03-10-2019",
     Status: "Finished",

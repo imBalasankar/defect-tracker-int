@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -39,19 +39,40 @@ const divStyle = {
   marginTop: "10px"
 };
 
-export default function EditDefectSeverityForm({ severity, onFinish }) {
+export default function EditDefectSeverityForm({ id, onFinish }) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    id: severity.id,
-    name: severity.name,
-    description: severity.description
+    id: "",
+    name: "",
+    description: ""
   });
   const [showResult, setShowResult] = React.useState("");
   const [message, setMessage] = React.useState("");
 
+  useEffect(() => {
+    Axios.get(`http://localhost:8087/api/v1/severity/${id()}`)
+      .then(response => {
+        console.log(response);
+        let result = response.data.results.listSeverity;
+        updateData(result);
+      })
+      .catch(error => {
+        console.log(error);
+        setShowResult("alert alert-danger");
+        setMessage("Failed to Retrive Data!!");
+      });
+  }, [id]);
+
+  const updateData = data => {
+    setValues({
+      id: data.id,
+      name: data.name,
+      description: data.description
+    });
+  };
+
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
-    console.log(severity.name);
   };
 
   const clearValues = () => {

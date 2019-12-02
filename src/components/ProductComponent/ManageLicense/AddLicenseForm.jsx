@@ -36,7 +36,11 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     margin: theme.spacing(3),
-    width: "205px"
+    width: "205px",
+    textAlign: "left"
+  },
+  formLabel: {
+    textAlign: "left"
   },
   button: {
     marginTop: theme.spacing(3),
@@ -97,7 +101,9 @@ export default function AddLicenseForm() {
                 />
               </div>
               <div>
-                <FormLabel component="legend">Select Features</FormLabel>
+                <FormLabel className={classes.formLabel} component="legend">
+                  Select Features
+                </FormLabel>
                 <FormControl
                   component="fieldset"
                   className={classes.formControl}

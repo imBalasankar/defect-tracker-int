@@ -118,18 +118,18 @@ export default function AddProjectForm() {
                   variant="outlined"
                 />
                 <FormControl required className={classes.formControl}>
-                  <InputLabel ref={inputLabel} htmlFor="project-type">
-                    Type
+                  <InputLabel ref={inputLabel} htmlFor="client-name">
+                    Client Name
                   </InputLabel>
                   <Select
-                    id="project-type"
+                    id="client-name"
                     labelWidth={labelWidth}
                     value={value}
                     onChange={handleChange}
                   >
-                    <MenuItem value="Mobile">Mobile</MenuItem>
-                    <MenuItem value="Stand Alone">Stand Alone</MenuItem>
-                    <MenuItem value="Web-based">Web-based</MenuItem>
+                    <MenuItem value="Virtusa">Virtusa</MenuItem>
+                    <MenuItem value="Mitra">Mitra</MenuItem>
+                    <MenuItem value="Axiata">Axiata</MenuItem>
                   </Select>
                 </FormControl>
                 <FormControl required className={classes.formControl}>
